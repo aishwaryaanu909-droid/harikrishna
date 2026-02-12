@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Student Login</title>
+
+    <style>
+        body {
+            font-family: Arial;
+            background-color: #4e73df;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+        }
+
+        .login-box {
+            background: white;
+            padding: 30px;
+            border-radius: 10px;
+            width: 300px;
+            text-align: center;
+        }
+
+        input {
+            width: 90%;
+            padding: 10px;
+            margin: 10px 0;
+        }
+
+        button {
+            width: 100%;
+            padding: 10px;
+            background-color: green;
+            color: white;
+            border: none;
+            cursor: pointer;
+        }
+
+        button:hover {
+            background-color: darkgreen;
+        }
+
+        #message {
+            margin-top: 10px;
+            font-weight: bold;
+        }
+    </style>
+</head>
+
+<body>
+
+    <div class="login-box">
+        <h2>Student Login</h2>
+
+        <input type="text" id="username" placeholder="Enter Username">
+        <input type="password" id="password" placeholder="Enter Password">
+
+        <button onclick="login()">Login</button>
+
+        <p id="message"></p>
+    </div>
+
+    <script>
+        function login() {
+
+            var username = document.getElementById("username").value;
+            var password = document.getElementById("password").value;
+            var message = document.getElementById("message");
+
+            // Demo login data
+            var correctUser = "student";
+            var correctPass = "1234";
+
+            if (username === correctUser && password === correctPass) {
+                message.style.color = "green";
+                message.innerHTML = "Login Successful!";
+            } else {
+                message.style.color = "red";
+                message.innerHTML = "Invalid Username or Password";
+            }
+        }
+    </script>
+
+</body>
+</html>
