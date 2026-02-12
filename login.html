@@ -2,11 +2,10 @@
 <html>
 <head>
     <title>Student Login</title>
-
     <style>
         body {
             font-family: Arial;
-            background-color: #4e73df;
+            background: linear-gradient(to right, #4e73df, #1cc88a);
             display: flex;
             justify-content: center;
             align-items: center;
@@ -17,14 +16,19 @@
             background: white;
             padding: 30px;
             border-radius: 10px;
-            width: 300px;
+            width: 320px;
             text-align: center;
+            box-shadow: 0 0 10px gray;
+        }
+
+        h2 {
+            margin-bottom: 20px;
         }
 
         input {
             width: 90%;
             padding: 10px;
-            margin: 10px 0;
+            margin: 8px 0;
         }
 
         button {
@@ -40,6 +44,13 @@
             background-color: darkgreen;
         }
 
+        .forgot {
+            margin-top: 10px;
+            color: blue;
+            cursor: pointer;
+            font-size: 14px;
+        }
+
         #message {
             margin-top: 10px;
             font-weight: bold;
@@ -49,37 +60,75 @@
 
 <body>
 
-    <div class="login-box">
-        <h2>Student Login</h2>
+<div class="login-box">
+    <h2>Student Login</h2>
 
-        <input type="text" id="username" placeholder="Enter Username">
-        <input type="password" id="password" placeholder="Enter Password">
+    <input type="text" id="username" placeholder="Enter Username">
+    <input type="password" id="password" placeholder="Enter Password">
 
-        <button onclick="login()">Login</button>
+    <button onclick="login()">Login</button>
 
-        <p id="message"></p>
-    </div>
+    <div class="forgot" onclick="forgotPassword()">Forgot Password?</div>
 
-    <script>
-        function login() {
+    <p id="message"></p>
+</div>
 
-            var username = document.getElementById("username").value;
-            var password = document.getElementById("password").value;
-            var message = document.getElementById("message");
+<script>
 
-            // Demo login data
-            var correctUser = "student";
-            var correctPass = "1234";
-
-            if (username === correctUser && password === correctPass) {
-                message.style.color = "green";
-                message.innerHTML = "Login Successful!";
-            } else {
-                message.style.color = "red";
-                message.innerHTML = "Invalid Username or Password";
-            }
+    // JSON student data
+    const students = [
+        {
+            "username": "student1",
+            "password": "1234"
+        },
+        {
+            "username": "student2",
+            "password": "5678"
         }
-    </script>
+    ];
+
+    function login() {
+
+        const username = document.getElementById("username").value;
+        const password = document.getElementById("password").value;
+        const message = document.getElementById("message");
+
+        let validUser = false;
+
+        students.forEach(function(student) {
+            if (student.username === username && student.password === password) {
+                validUser = true;
+            }
+        });
+
+        if (validUser) {
+            message.style.color = "green";
+            message.innerHTML = "Login Successful!";
+        } else {
+            message.style.color = "red";
+            message.innerHTML = "Invalid Username or Password";
+        }
+    }
+
+    function forgotPassword() {
+
+        const username = prompt("Enter your username:");
+
+        let found = false;
+
+        students.forEach(function(student) {
+            if (student.username === username) {
+                alert("Your password is: " + student.password);
+                found = true;
+            }
+        });
+
+        if (!found) {
+            alert("Username not found!");
+        }
+    }
+
+</script>
 
 </body>
 </html>
