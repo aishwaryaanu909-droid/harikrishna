@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Student Profile</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            background-color: #f4f6f9;
+        }
+
+        .header {
+            background-color: #4e73df;
+            color: white;
+            padding: 15px;
+            text-align: center;
+            font-size: 22px;
+        }
+
+        .container {
+            width: 60%;
+            margin: 40px auto;
+            background: white;
+            padding: 25px;
+            border-radius: 8px;
+            box-shadow: 0 0 10px gray;
+        }
+
+        h2 {
+            text-align: center;
+            margin-bottom: 20px;
+        }
+
+        .info {
+            margin: 10px 0;
+            font-size: 18px;
+        }
+
+        .label {
+            font-weight: bold;
+        }
+
+        button {
+            margin-top: 20px;
+            padding: 10px;
+            background-color: red;
+            color: white;
+            border: none;
+            cursor: pointer;
+            display: block;
+            width: 100%;
+        }
+    </style>
+</head>
+
+<body>
+
+<div class="header">
+    Student Profile Page
+</div>
+
+<div class="container">
+    <h2>Student Information</h2>
+
+    <div class="info"><span class="label">Name:</span>Tina</div>
+    <div class="info"><span class="label">Roll Number:</span> 101</div>
+    <div class="info"><span class="label">Class:</span> 10th Grade</div>
+    <div class="info"><span class="label">Date of Birth:</span> 12-05-2008</div>
+    <div class="info"><span class="label">Contact:</span> 9876543210</div>
+    <div class="info"><span class="label">Email:</span> student@email.com</div>
+
+    <button onclick="goBack()">Back to Dashboard</button>
+</div>
+
+<script>
+    function goBack() {
+        window.location.href = "dashboard.html";
+    }
+</script>
+
+</body>
+</html>

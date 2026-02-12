@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Update Student</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f2f2f2;
+            margin: 0;
+        }
+
+        .header {
+            background-color: #4e73df;
+            color: white;
+            padding: 15px;
+            text-align: center;
+            font-size: 22px;
+        }
+
+        .container {
+            width: 50%;
+            margin: 40px auto;
+            background: white;
+            padding: 25px;
+            border-radius: 8px;
+            box-shadow: 0 0 10px gray;
+        }
+
+        input {
+            width: 95%;
+            padding: 10px;
+            margin: 10px 0;
+        }
+
+        button {
+            padding: 10px;
+            width: 100%;
+            background-color: green;
+            color: white;
+            border: none;
+            cursor: pointer;
+        }
+
+        .back-btn {
+            background-color: gray;
+            margin-top: 10px;
+        }
+    </style>
+</head>
+
+<body>
+
+<div class="header">Update Student</div>
+
+<div class="container">
+    <h2>Edit Student Details</h2>
+
+    <input type="text" id="name" placeholder="Student Name">
+    <input type="text" id="roll" placeholder="Roll Number">
+    <input type="text" id="class" placeholder="Class">
+
+    <button onclick="updateStudent()">Update Student</button>
+    <button class="back-btn" onclick="goBack()">Back</button>
+</div>
+
+<script>
+    let students = JSON.parse(localStorage.getItem("students")) || [];
+    let editIndex = localStorage.getItem("editIndex");
+
+    // Load selected student data
+    if (editIndex !== null) {
+        const student = students[editIndex];
+        document.getElementById("name").value = student.name;
+        document.getElementById("roll").value = student.roll;
+        document.getElementById("class").value = student.class;
+    }
+
+    function updateStudent() {
+        const name = document.getElementById("name").value;
+        const roll = document.getElementById("roll").value;
+        const studentClass = document.getElementById("class").value;
+
+        students[editIndex] = { name, roll, class: studentClass };
+
+        localStorage.setItem("students", JSON.stringify(students));
+
+        alert("Student Updated Successfully!");
+        window.location.href = "view-students.html";
+    }
+
+    function goBack() {
+        window.location.href = "view-students.html";
+    }
+</script>
+
+</body>
+</html>

@@ -1,0 +1,125 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>View Students</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            background-color: #f2f2f2;
+        }
+
+        .header {
+            background-color: #4e73df;
+            color: white;
+            padding: 15px;
+            text-align: center;
+            font-size: 22px;
+        }
+
+        .container {
+            width: 80%;
+            margin: 30px auto;
+            background: white;
+            padding: 20px;
+            border-radius: 8px;
+            box-shadow: 0 0 10px gray;
+        }
+
+        table {
+            width: 100%;
+            border-collapse: collapse;
+        }
+
+        th, td {
+            border: 1px solid #ddd;
+            padding: 10px;
+            text-align: center;
+        }
+
+        th {
+            background-color: #4e73df;
+            color: white;
+        }
+
+        button {
+            padding: 5px 10px;
+            background-color: red;
+            color: white;
+            border: none;
+            cursor: pointer;
+        }
+
+        .back-btn {
+            margin-top: 15px;
+            padding: 10px;
+            background-color: green;
+            width: 100%;
+        }
+    </style>
+</head>
+
+<body>
+
+<div class="header">View Students</div>
+
+<div class="container">
+    <table>
+        <thead>
+            <tr>
+                <th>Name</th>
+                <th>Roll</th>
+                <th>Class</th>
+                <th>Action</th>
+            </tr>
+        </thead>
+        <tbody id="studentTable"></tbody>
+    </table>
+
+    <button class="back-btn" onclick="goBack()">Back to Dashboard</button>
+</div>
+
+<script>
+    // Sample JSON data (stored in localStorage if not already)
+    if (!localStorage.getItem("students")) {
+        const students = [
+            { name: "Rina", roll: "101", class: "10" },
+            { name: "Rahul", roll: "102", class: "10" }
+        ];
+        localStorage.setItem("students", JSON.stringify(students));
+    }
+
+    const studentTable = document.getElementById("studentTable");
+
+    function loadStudents() {
+        const students = JSON.parse(localStorage.getItem("students")) || [];
+        studentTable.innerHTML = "";
+
+        students.forEach((student, index) => {
+            studentTable.innerHTML += `
+                <tr>
+                    <td>${student.name}</td>
+                    <td>${student.roll}</td>
+                    <td>${student.class}</td>
+                    <td><button onclick="deleteStudent(${index})">Delete</button></td>
+                </tr>
+            `;
+        });
+    }
+
+    function deleteStudent(index) {
+        const students = JSON.parse(localStorage.getItem("students"));
+        students.splice(index, 1);
+        localStorage.setItem("students", JSON.stringify(students));
+        loadStudents();
+    }
+
+    function goBack() {
+        window.location.href = "dashboard.html";
+    }
+
+    loadStudents();
+</script>
+
+</body>
+</html>
